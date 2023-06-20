@@ -26,12 +26,33 @@ This is a test project to learn and try out terraform scripts
     ex: terraform plan -var=<variable-name>=<variable-value>
   2. Provide value through tf files 
     ex: terrafor.tfvars
+- can Add validations, data type, sensitivity, description
+- theses .tfvars files loaded to root by default (.dev.tfvars, .prod.tfvars)
+- can use env. variables with remote
+- ENV variable must be start with TF_VAR_ <name>...
+- Can override variables... various ways (there is a file precedence)
 
 #### locals
 - introduce local variables and use inside code
 
 #### output
 - Can get output like ip address from this
+- Can have descriptions, sensitivity
+- Can provide output type -> raw, json...
+
+#### Data source
+- use information defined outside of the terraform
+
+#### Resource meta arguments
+- control resources
+- depends_on, count....
+- lifecycle_blocks -
+  - create_before_destroy
+  - prevent_destroy
+  - ignore_changes
+- resource providers and alias
+  - can use to override 
+
 
 #### Providers
 - can add aws providers and customise
@@ -52,7 +73,44 @@ This is a test project to learn and try out terraform scripts
 - Then we can remove state file in our local project. But keep backup
 - We need to set locally added variables in workspace (variables.tfvars)
 
+#### Provisioners 
+- types
+  - local-exec
+  - remote-exec
+  - file
+  ** strongly recommended to use backed golder image to work with complex task.(can use packer)
+- connection
+- null_resources
+- doing ssh server by configuring
+
+#### Providers
+- providers are plugins and plugins must be downloaded before use. 
+It will be downloaded with the terraform init
+- show all providers -> terraform providers
+- can create modules with providers to provide set of configs
+
+#### Registries
+- publish providers, modules (group of configuration files) here
+- There are public and private registries
+
+##### Terraform Language
+- .tf , .tf.json
+- HCL
+- support json alternative syntax as well
+
+#### Terraform settings
+- config blocks
+
+#### 
+
 # followed tutorials 
 - https://www.youtube.com/watch?v=V4waklkBC38
 - https://www.terraform-best-practices.com/
 
+# special notes
+* Do not use terraform for provisioning tool. Use other alternatives for that. 
+Use configuration management tool for that (ex: Ansible, chef, puppet)
+* Fine line between Terraform and ConfigManagement tools(Ansible,....)
+  - Use terraform to do providers, modules, and non repeatable provisioning actions
+  - Use config management tool to do provisioning with repeatable actions
+* 
