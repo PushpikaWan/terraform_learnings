@@ -33,8 +33,24 @@ This is a test project to learn and try out terraform scripts
 #### output
 - Can get output like ip address from this
 
-#### 
+#### Providers
+- can add aws providers and customise
 
+#### destroy
+- terraform apply --destroy to destroy all of our resources
+
+#### workspace
+- To see all workspaces - terraform workspace list 
+- We need to migrate local to remote to share all tf changes
+- Steps
+  - Create a workspace in terraform web
+  - add configuration to point that workspace
+  - Run below commands
+    - terraform login
+    - terraform init
+- This will take my state file and move it into the remote workspace
+- Then we can remove state file in our local project. But keep backup
+- We need to set locally added variables in workspace (variables.tfvars)
 
 # followed tutorials 
 - https://www.youtube.com/watch?v=V4waklkBC38
